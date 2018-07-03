@@ -3,7 +3,7 @@
 // @name            stylish
 // @version         1.0
 // @description     User CSS
-// @include         *
+// @include         https://mrakopedia.org/*
 // @grant           GM_addStyle
 // ==/UserScript==
 
@@ -29,7 +29,7 @@
 
         '<div id="cfg_holder">' +
         '<div id="cfg_css" class="cfg_tab">' +
-        '<div><label><input id="cfg_checkbox" type="checkbox" ' + (use_custom_css ? "checked" : "") + '/><span>Применять CSS</span></label></div>' +
+        '<div><label><input id="cfg_checkbox" type="checkbox" ' + (use_custom_css ? "checked" : "") + '/><span style="color: black;">Применять CSS</span></label></div>' +
         '<div><a href="#" id="cfg_save_css">Сохранить CSS</a></div>' +
         '<textarea id="cfg_textarea">' + custom_css + '</textarea>' +
         '</div>' +
@@ -63,14 +63,7 @@
     updateStyle();
 
     GM_addStyle(
-        `        
-        #cfg_button:hover{
-            right:0px;
-            bottom:0px;
-            transition:0.5s;
-            transition-timing-function:ease-out;
-        }
-
+        `
         #cfg_button{
            transition:0.5s;
            transition-timing-function:ease-out;
@@ -82,6 +75,15 @@
            position:fixed;
            width:250px;
            height:250px;
+           background: gray;
+           font-size: medium
+        }
+
+        #cfg_button:hover{
+            right:0px;
+            bottom:0px;
+            transition:0.5s;
+            transition-timing-function:ease-out;
         }
 
         #cfg_title{
@@ -97,7 +99,16 @@
         }
 
         #cfg_textarea{
-           height:190px;
+          height: 165px;
+          width: 238px;
+          margin: 5px 0 0 5px;
+          background: lightgray;
+          border: 0 solid black;
+        }
+
+        #cfg_save_css{
+            margin-left: 4px;
+            color: blue;
         }
         `
     );
