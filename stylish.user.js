@@ -1,9 +1,9 @@
 // ==UserScript==
 // @id              stylish
 // @name            stylish
-// @version         1.0
-// @description     User CSS
-// @include         https://mrakopedia.org/*
+// @version         2.0
+// @description     Add custom CSS to the current web site
+// @include         *
 // @grant           GM_addStyle
 // ==/UserScript==
 
@@ -21,12 +21,12 @@
     var custom_css = ls.getItem('custom_css');
     var use_custom_css = +ls.getItem('use_custom_css');
 
+    // Draw modal window
     var cfg_button = document.createElement('div');
 
     cfg_button.setAttribute('id', 'cfg_button');
     cfg_button.innerHTML =
         '<div id="cfg_title"><span>CSS</span></div>' +
-
         '<div id="cfg_holder">' +
         '<div id="cfg_css" class="cfg_tab">' +
         '<div><label><input id="cfg_checkbox" type="checkbox" ' + (use_custom_css ? "checked" : "") + '/><span style="color: black;">Применять CSS</span></label></div>' +
@@ -36,6 +36,12 @@
         '</div>' +
         '';
     document.body.appendChild(cfg_button);
+
+    document.onkeydown = function(e){
+        if (e.key === 'q' && e.ctrlKey){
+            cfg_button.classList = cfg_button.classList.length ? '' : 'cfg_button_show';
+        }
+    };
 
     // Подключаем или отключаем CSS
     var chkbox = document.getElementById('cfg_checkbox');
@@ -70,8 +76,8 @@
            border-left: 2px solid #252525;
            border-top: 2px solid #252525;
            border-radius: 10px 0 0 0;
-           right:-200px;
-           bottom:-220px;
+           right:-250px;
+           bottom:-250px;
            position:fixed;
            width:250px;
            height:250px;
@@ -79,7 +85,7 @@
            font-size: medium
         }
 
-        #cfg_button:hover{
+        #cfg_button.cfg_button_show{
             right:0px;
             bottom:0px;
             transition:0.5s;
